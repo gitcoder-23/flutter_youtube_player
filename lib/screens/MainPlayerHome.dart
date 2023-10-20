@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_youtube_player/screens/YoutubePlayerIframe.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class MainPlayerHome extends StatefulWidget {
@@ -35,10 +36,23 @@ class _MainPlayerHomeState extends State<MainPlayerHome> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          const Align(
+            child: Text(
+              'Youtube Player Without Iframe',
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 18,
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 10,
+          ),
           YoutubePlayer(
             controller: _controller,
             showVideoProgressIndicator: true,
             onReady: () => debugPrint('Ready'),
+            onEnded: (metaData) {},
             bottomActions: [
               CurrentPosition(),
               ProgressBar(
@@ -50,7 +64,12 @@ class _MainPlayerHomeState extends State<MainPlayerHome> {
               ),
               const PlaybackSpeedButton()
             ],
-          )
+          ),
+          const SizedBox(
+            height: 40,
+          ),
+          // Using IFRAME
+          const YoutubePlayerIframe(),
         ],
       ),
     );
